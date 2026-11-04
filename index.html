@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<title>spool · ritorno</title>
+<style>
+  :root { color-scheme: light dark; }
+  body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: #FFFFFF; color: #151515;
+         font: 16px/1.5 -apple-system, "Helvetica Neue", Arial, sans-serif; }
+  @media (prefers-color-scheme: dark) { body { background: #151515; color: #FFFFFF; } }
+  main { max-width: 560px; padding: 24px; }
+  h1 { font: 600 14px/1 ui-monospace, monospace; letter-spacing: .08em; text-transform: uppercase; margin: 0 0 16px; }
+  button { font: inherit; padding: 10px 16px; border: 1px solid currentColor; background: transparent; color: inherit; cursor: pointer; }
+  p.esito { min-height: 1.5em; }
+</style>
+</head>
+<body>
+<main>
+  <h1>spool · ritorno</h1>
+  <p>Copia l'indirizzo di questa pagina e incollalo nel Terminale, dove lo script lo sta aspettando. Fallo subito: il codice vale pochi minuti.</p>
+  <button id="copia">Copia l'indirizzo</button>
+  <p class="esito" id="esito"></p>
+</main>
+<script>
+  document.getElementById('copia').addEventListener('click', async () => {
+    const esito = document.getElementById('esito');
+    try {
+      await navigator.clipboard.writeText(location.href);
+      esito.textContent = 'Copiato.';
+    } catch (e) {
+      esito.textContent = "Non riesco a copiare da qui: copia l'indirizzo dalla barra.";
+    }
+  });
+</script>
+</body>
+</html>
